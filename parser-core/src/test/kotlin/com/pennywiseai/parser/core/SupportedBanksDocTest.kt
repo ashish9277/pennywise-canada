@@ -27,6 +27,7 @@ class SupportedBanksDocTest {
     // (the generator throws below if a currency is missing, so it can't be forgotten).
     private val currencyMeta = mapOf(
         "INR" to CountryMeta("India", "🇮🇳", "₹"),
+        "CAD" to CountryMeta("Canada", "🇨🇦", "$"),
         "USD" to CountryMeta("United States", "🇺🇸", "$"),
         "AED" to CountryMeta("UAE", "🇦🇪", "د.إ"),
         "THB" to CountryMeta("Thailand", "🇹🇭", "฿"),
