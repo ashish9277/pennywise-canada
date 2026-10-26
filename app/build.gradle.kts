@@ -11,7 +11,7 @@ plugins {
 
 android {
     namespace = "com.pennywiseai.tracker"
-    compileSdk = 37
+    compileSdk = 36
     
     buildFeatures {
         buildConfig = true
