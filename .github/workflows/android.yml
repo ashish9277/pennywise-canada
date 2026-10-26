@@ -49,20 +49,25 @@ jobs:
           sdkmanager "platforms;android-36" "platform-tools"
 
       
+      
       - name: Regenerate supported banks documentation
         run: |
           bash scripts/update-supported-banks.sh
-          git status --short
-          git diff -- docs/supported-banks.json
 
-      - name: Upload generated supported banks JSON
+          echo "Files changed by generator:"
+          git status --short
+
+      - name: Upload all generated documentation
         uses: actions/upload-artifact@v4
         with:
-          name: updated-supported-banks
-          path: docs/supported-banks.json
+          name: PennyWise-Updated-Documentation
+          path: |
+            README.md
+            docs/supported-banks.json
+            pennywise-web/server/src/main/resources/supported-banks.json
+            fastlane/metadata/android/
           if-no-files-found: error
 
-      
       
       - name: Commit updated bank documentation
         run: |
