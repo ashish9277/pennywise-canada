@@ -80,7 +80,9 @@ jobs:
             echo "All supported banks documentation is up to date."
           fi
 
-
+      
+      - name: Run parser tests
+        run: ./gradlew :parser-core:jvmTest --stacktrace
 
       - name: Build debug APK
         run: ./gradlew :app:assembleFdroidDebug --stacktrace
