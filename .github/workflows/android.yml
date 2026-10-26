@@ -27,7 +27,6 @@ jobs:
       - name: Grant Gradle permissions
         run: chmod +x gradlew
 
-      
       - name: Install Android command-line tools
         run: |
           SDK="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-$HOME/android-sdk}}"
@@ -40,22 +39,14 @@ jobs:
             -o /tmp/android-tools.zip
 
           unzip -q /tmp/android-tools.zip -d /tmp/android-tools
-
           mv /tmp/android-tools/cmdline-tools \
             "$SDK/cmdline-tools/latest"
 
           echo "$SDK/cmdline-tools/latest/bin" >> "$GITHUB_PATH"
 
-      
-      - name: Check Android SDK availability
+      - name: Install Android SDK 36
         run: |
-          sdkmanager --list --channel=3 | grep -E "platforms;android-(36|37)" || true
-
-      - name: Install Android SDK 37
-        run: |
-          sdkmanager --channel=3 "platforms;android-37"
-          sdkmanager "platform-tools"
-
+          sdkmanager "platforms;android-36" "platform-tools"
 
       - name: Regenerate supported banks documentation
         run: bash scripts/update-supported-banks.sh
