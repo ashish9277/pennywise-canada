@@ -48,8 +48,19 @@ jobs:
         run: |
           sdkmanager "platforms;android-36" "platform-tools"
 
+      
       - name: Regenerate supported banks documentation
-        run: bash scripts/update-supported-banks.sh
+        run: |
+          bash scripts/update-supported-banks.sh
+          git status --short
+          git diff -- docs/supported-banks.json
+
+      - name: Upload generated supported banks JSON
+        uses: actions/upload-artifact@v4
+        with:
+          name: updated-supported-banks
+          path: docs/supported-banks.json
+          if-no-files-found: error
 
       
       - name: Commit updated supported banks documentation
