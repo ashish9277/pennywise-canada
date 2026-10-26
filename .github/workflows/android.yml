@@ -33,6 +33,14 @@ jobs:
       - name: Grant Gradle permissions
         run: chmod +x gradlew
 
+      # NEW: Generate updated CIBC bank documentation
+      - name: Regenerate supported banks documentation
+        run: bash scripts/update-supported-banks.sh
+
+      # NEW: Show which files changed
+      - name: Show generated documentation changes
+        run: git status --short
+
       - name: Build debug APK
         run: ./gradlew :app:assembleFdroidDebug --stacktrace
 
